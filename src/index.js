@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// redux dependencies
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+
+// firebase dependencies
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import { reduxFirestore, getFirestore } from 'redux-firestore';
+import fbConfig from './config/fbConfig';
 
 import App from './App';
 
@@ -15,7 +22,11 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(
+    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+    reactReduxFirebase(fbConfig),
+    reduxFirestore(fbConfig)
+  )
 );
 
 ReactDOM.render(
