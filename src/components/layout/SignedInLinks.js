@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../actions/authActions';
 
-const SignedInLinks = ({ signOut }) => {
+const SignedInLinks = ({ signOut, profile }) => {
   return (
     <ul className="right">
       <li>
@@ -15,7 +15,7 @@ const SignedInLinks = ({ signOut }) => {
       </li>
       <li>
         <NavLink to="/" className="btn btn-floating pink lighten-1">
-          MO
+          {profile.initials}
         </NavLink>
       </li>
     </ul>

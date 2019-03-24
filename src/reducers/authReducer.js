@@ -9,6 +9,11 @@ export default (state = initState, action) => {
         ...state,
         authError: action.payload
       };
+    case 'SIGNUP_ERROR':
+      return {
+        ...state,
+        authError: action.payload
+      };
     case 'LOGIN_SUCCESS':
       return {
         ...state,
@@ -16,6 +21,11 @@ export default (state = initState, action) => {
       };
     case 'SIGNOUT_SUCCESS':
       return state;
+    case 'SIGNUP_SUCCESS':
+      return {
+        ...state,
+        authError: null
+      };
     default:
       return state;
   }

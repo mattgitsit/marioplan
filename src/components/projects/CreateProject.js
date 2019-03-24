@@ -15,14 +15,11 @@ class CreateProject extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { title, content } = this.state;
-
     const newProject = {
-      title,
-      content
+      ...this.state
     };
 
-    this.props.createProject(newProject);
+    this.props.createProject(newProject, this.props.history);
   };
 
   render() {
